@@ -10,11 +10,42 @@
     <script src="https://unpkg.com/babel-core@5.8.38/browser.min.js"></script>
     <title>Document</title>
 </head>
+<style>
+    .mauvang{background-color: yellow}
+</style>
 <body>
     <div id="root"></div>
 
     <script type="text/babel">
-        ReactDOM.render(<h1>avvvvv </h1>, document.getElementById('root'));
+        class Com extends React.Component{
+            constructor(props){
+                super(props);
+                this.state = {
+                    total : 1
+                }
+                this.onClick = this.onClick.bind(this);
+            }
+
+            onClick () {
+                this.setState({
+                    total : this.state.total + 1
+                });
+            }
+            render() {
+                return (
+                    <div>
+                        <h1>{this.state.total}</h1>
+                        <button onClick = {this.onClick}>Hellos {this.state.total}</button>
+                    </div>
+                );
+            }
+        };
+        ReactDOM.render(
+          <Com />,
+        document.getElementById('root')
+        );
     </script>
+         
+    
 </body>
 </html>
