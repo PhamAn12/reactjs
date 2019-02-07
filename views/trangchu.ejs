@@ -12,11 +12,79 @@
 </head>
 <style>
     .mauvang{background-color: yellow}
+    .person-info {
+         border: 1px solid blue;
+         margin: 5px;
+         padding: 5px;
+         width: 250px;
+         }
+    .greeting {
+        border: 1px solid red;
+        margin :5px;
+        padding : 5px;
+        width: 250px;
+        color:tomato;
+    }     
 </style>
 <body>
     <div id="root"></div>
+    
+    <h1>People</h1>
+    <div id="person1"></div>
+    <div id="person2"></div>
 
+    <div id="hello"></div>
+    <div id="defautHello"></div>
     <script type="text/babel">
+        class Greeting extends React.Component {
+            render() {
+                return (
+                    <div className="greeting">
+                        <h3>Hello {this.props.name}</h3>
+                        <i>{this.props.message}</i>
+                    </div>
+                );
+            }
+        }
+
+        Greeting.defaultProps = {
+            name : 'There',
+            message : 'Welcome to this website'
+        }
+        ReactDOM.render(
+            <Greeting name ="Banh" message='welcomeback'/>,document.getElementById('hello')
+            
+        )
+        ReactDOM.render(
+            <Greeting/>,document.getElementById('defautHello')
+        )
+        class Person extends React.Component {
+            render() {
+                return(
+                    <div className = "person-info">
+                        <h3>Person {this.props.personNo}:</h3>
+                        <ul>
+                            <li>First Name: {this.props.firstName}</li>
+                            <li>Last Name: {this.props.lastName}</li>
+                            <li>Nation : {this.props.nation}</li>
+                        </ul>
+                    </div>
+
+                );
+            }
+        }
+
+        const element1 = document.getElementById('person1');
+        const element2 = document.getElementById('person2');
+
+        ReactDOM.render(
+            <Person personNo='1' firstName='Bill' lastName='Gates' nation='America' />, element1
+        )
+ 
+
+        ReactDOM.render(
+            <Person personNo='2' firstName='Donald' lastName='Trump' nation='America'/>, element2
+        )
         class Com extends React.Component{
             constructor(props){
                 super(props);
@@ -34,7 +102,7 @@
             render() {
                 return (
                     <div>
-                        <h1>{this.state.total}</h1>
+                        <h1 className='mauvang'>{this.state.total}</h1>
                         <button onClick = {this.onClick}>Happy lunar new year {this.state.total}</button>
                     </div>
                 );
@@ -44,6 +112,7 @@
           <Com />,
         document.getElementById('root')
         );
+        
     </script>
          
     
